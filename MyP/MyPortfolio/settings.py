@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['strooplabport.up.railway.app', '127.0.0.1', 'localhost', 'stro
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'ckeditor',
     'ckeditor_uploader',
     'main',
