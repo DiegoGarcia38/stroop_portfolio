@@ -2,12 +2,12 @@
     "builds": [{
       "src": "MyPortfolio/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.13" }
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.13" ,"buildCommand":"bash setup.sh"}
     }],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "MyPortfolio/wsgi.py"
+        "dest": "MyPortfolio/wsgi.py"   
       }
     ]
 }
