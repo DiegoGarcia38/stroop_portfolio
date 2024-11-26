@@ -1,0 +1,16 @@
+# Archivo nixpacks.yml
+
+setup:
+  - python3
+  - gcc
+  - sqlite3
+
+install:
+  - python -m venv --copies /opt/venv
+  - source /opt/venv/bin/activate
+  - pip install -r requirements.txt
+
+start:
+  - python manage.py migrate
+  - python manage.py runserver 0.0.0.0:$PORT
+

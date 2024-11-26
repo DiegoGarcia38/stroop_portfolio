@@ -1,0 +1,3 @@
+version = "1.0"
+[nixpacks]
+file = "nixpacks.yml"
