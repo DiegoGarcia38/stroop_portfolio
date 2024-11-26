@@ -5,7 +5,7 @@ font-family: 'Heebo', sans-serif; */
   --primaryColor: #9C07B6;
   --primaryDarkColor: #3D0048;
   --primaryHoverColor: #900AA8;
-  --secondaryColor: #F9B000;
+  --secondaryColor: #EEE;
   --baseColor: #21243D;
   --baseFont: 'Heebo', sans-serif;
   --titleFont: 'Courier Prime', monospace;
@@ -323,7 +323,7 @@ a, .btn {
 	border-radius: 3px;
 }
 .progressStyle .progress-bar {
-	background-color: #fff;
+	background-color: rgb(212, 169, 75);
 	border-radius: 3px;
 }
 .progressCol + .progressCol {
@@ -461,7 +461,7 @@ body.navToggleActive {
 
 
 
-/* footer */  
+/* footer */
 .footerCol {
   padding: 70px 0;
   text-align: center;
