@@ -6,6 +6,7 @@
 *.pot
 *.pyc
 *.sql
+data.json
 __pycache__/
 local_settings.py
 db3.sqlite3
