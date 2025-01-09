@@ -173,11 +173,17 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'height': 300,
         'width': '100%',
+        'extraAllowedContent': 'div[*];',
+        'allowedContent': True,
     },
     'portal_config': {
         'toolbar': 'full',
         'height': 300,
         'width': '100%',
+        'extraAllowedContent': 'div[*];',
+        'allowedContent': True,
     },
 }
 CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+

@@ -43,6 +43,22 @@
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="https://unpkg.com/swiper@7.0.5/swiper-bundle.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const vimeoPlayers = document.querySelectorAll('.vimeo-player');
+            vimeoPlayers.forEach(player => {
+                const videoId = player.dataset.videoId;
+                const options = {
+                    id: videoId,
+                    width: 640,
+                    autoplay: false,
+                    loop: false
+                };
+                const vimeoPlayer = new Vimeo.Player(player, options);
+            });
+        });
+    </script>    
     {% block extend_footer %}{%endblock%}
     <!-- ================================
     End Scripts
