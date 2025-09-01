@@ -7,7 +7,8 @@ from . models import (
     Portfolio,
     Blog,
     Certificate,
-    Skill
+    Skill,
+    WorkExperience
     )
 
 
@@ -44,3 +45,14 @@ class CertificateAdmin(admin.ModelAdmin):
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
     list_display = ('id','name','score')
+
+@admin.register(WorkExperience)
+class WorkExperienceAdmin(admin.ModelAdmin):
+    list_display = (
+         'id', 
+         'company', 
+         'position', 
+         'start_date', 
+         'end_date', 
+         'is_current'
+         )

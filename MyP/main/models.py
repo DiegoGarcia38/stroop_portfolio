@@ -155,3 +155,20 @@ class Certificate(models.Model):
 
     def __str__(self):
         return self.name
+
+class WorkExperience(models.Model):
+    class Meta:
+        verbose_name_plural = 'Work Experiences'
+        verbose_name = 'Work Experience'
+        ordering = ["-start_date"]
+
+    company = models.CharField(max_length=200, blank=True, null=True)
+    position = models.CharField(max_length=200, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    start_date = models.DateField(blank=True, null=True)
+    end_date = models.DateField(blank=True, null=True)
+    is_current = models.BooleanField(default=False)
+    logo = models.ImageField(blank=True, null=True, upload_to="work_experience")
+
+    def __str__(self):
+        return f"{self.position} at {self.company}"

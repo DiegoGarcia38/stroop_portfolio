@@ -1,11 +1,13 @@
 from django.shortcuts import render
+from math import ceil
 from django.contrib import messages
 from .models import (
 		UserProfile,
 		Blog,
 		Portfolio,
 		Testimonial,
-		Certificate
+		Certificate,
+		WorkExperience
 	)
 
 from django.views import generic
@@ -24,11 +26,32 @@ class IndexView(generic.TemplateView):
 		certificates = Certificate.objects.filter(is_active=True)
 		blogs = Blog.objects.filter(is_active=True)
 		portfolio = Portfolio.objects.filter(is_active=True)
-		
+		work_experience = WorkExperience.objects.order_by('-start_date')
+
+		# Obtener el UserProfile del usuario actual (ajusta según tu lógica de usuario)
+		userprofile = None
+		if self.request.user.is_authenticated:
+			try:
+				userprofile = UserProfile.objects.get(user=self.request.user)
+			except UserProfile.DoesNotExist:
+				userprofile = None
+
+		# Dividir las coding & design skills en dos columnas
+		coding_skills_col1, coding_skills_col2 = [], []
+		if userprofile:
+			coding_skills = [sk for sk in userprofile.skills.all() if not sk.is_key_skill]
+			half = (len(coding_skills) + 1) // 2
+			coding_skills_col1 = coding_skills[:half]
+			coding_skills_col2 = coding_skills[half:]
+
 		context["testimonials"] = testimonials
+		context["work_experience"] = work_experience
 		context["certificates"] = certificates
 		context["blogs"] = blogs
 		context["portfolio"] = portfolio
+		context["userprofile"] = userprofile
+		context["coding_skills_col1"] = coding_skills_col1
+		context["coding_skills_col2"] = coding_skills_col2
 		return context
 
 
