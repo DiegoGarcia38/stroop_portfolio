@@ -3,7 +3,6 @@ $('.navToggle').on('click', function (e) {
   $('body').toggleClass('navToggleActive');
 });
 
-
 $(window).scroll(function(){
   if ($(this).scrollTop() > 10) {
     $('body').addClass('fixedHeader');
@@ -46,4 +45,31 @@ var swiper = new Swiper(".certificatesSlider", {
       spaceBetween: 16,
     },
   },
+});
+
+document.querySelector(".navOverlay").addEventListener("click", function() {
+  document.body.classList.remove("navToggleActive");
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  
+  const bars = document.querySelectorAll(".progress-bar");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bar = entry.target;
+        const width = bar.getAttribute("data-width");
+        bar.style.width = width;
+        observer.unobserve(bar); // solo una vez
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  bars.forEach(bar => {
+    observer.observe(bar);
+  });
+
 });

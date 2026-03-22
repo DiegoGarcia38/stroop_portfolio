@@ -93,12 +93,13 @@ DATABASES = {
     }
 }
 
-#DATABASES = {
+# Para desarrollo local
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db3.sqlite3'),
+#        'NAME': BASE_DIR / 'db3.sqlite3',
 #    }
-#}
+# }
 
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_HOST = 'smtp-mail.outlook.com'
@@ -144,14 +145,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 STATICFILES_DIRS = [
-    BASE_DIR, 'static/',
-    BASE_DIR, 'media/'
+    BASE_DIR / 'static/',
 ]
 
-STATIC_URL = "static/"
+STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles/'
 
 MEDIA_URL = 'media/'

@@ -32,20 +32,22 @@ Start Content
 ================================= -->
 {% block content %}
 <section>
+  <div class="navOverlay">
   <div class="bannerSection">
     <div class="container">
-      <div class="row g-4 g-md-3  align-items-center">
-        <div class="col-md-auto order-md-last">
-          <div class="bannerUserImg">
+      <div class="row g-4 g-md-3 align-items-center">
+        <div class="col-md-auto order-md-last text-center text-md-start">
+          <div class="bannerUserImg mx-auto mx-md-0">
             <img src="{{me.userprofile.avatar.url}}" alt="{{me.first_name|title}} {{me.last_name|title}} avatar">
           </div>
         </div>
         <div class="col-md">
           <div class="bannerContent">
-            <h1 class="xlTitle pb-3">Hola, soy {{me.first_name|title}}, <br>{{me.userprofile.title}}, y este es mi contacto: <a href="http://wa.me/+573188362105" style="color:purple">3188362105</a></br></h1>
-            <p>{{me.userprofile.bio}}</p>
+            <h1 class="xlTitle pb-3">Hola, soy {{me.first_name|title}}, {{me.userprofile.title}}, y este es mi
+              contacto: <a href="http://wa.me/+573188362105" style="color:purple">3188362105</a></h1>
+            <!-- <p>{{me.userprofile.bio}}</p> -->
             <div class="bannerBtnCol">
-              <div class="row">
+              <div class="row justify-content-center justify-content-md-start">
                 <div class="col-auto">
                   <a download href="{{me.userprofile.cv.url}}" class="btn btnPrimary">Descargar CV</a>
                 </div>
@@ -67,7 +69,7 @@ Start Content
       <div class="row">
         <div class="col-md-auto">
           <div class="keySkillCol">
-            <h4 class="smTitle pb-3">Key Skills</h4>
+            <h4 class="smTitle pb-3 bold">Key Skills</h4>
             {% for sk in me.userprofile.skills.all %}
             {% if sk.is_key_skill%}
             <div class="keySkillCard">
@@ -82,27 +84,44 @@ Start Content
             {% endfor %}
           </div>
         </div>
-        <div class="col-md">
-          <h4 class="smTitle pb-4">Coding & Design Skills</h4>
+        <div class="col-md mt-5 mt-md-0">
+          <h4 class="smTitle pb-3 bold">Coding & Design Skills</h4>
           <div class="row">
-            <div class="col-md-12">
-              {% for sk in me.userprofile.skills.all %}
-                {% if not sk.is_key_skill %}
-                  <div class="progressCol">
-                    <span class="progressLbl">{{sk.name}}</span>
-                    <div class="row g-2 align-items-center">
-                      <div class="col">
-                        <div class="progress progressStyle">
-                          <div class="progress-bar" role="progressbar" style="width: {{sk.score}}%"
-                            aria-valuenow="{{sk.score}}" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <span class="pLbl">{{sk.score}}%</span>
-                      </div>
+            <div class="col-md-6">
+              {% for sk in col1 %}
+              <div class="progressCol">
+                <span class="progressLbl">{{sk.name}}</span>
+                <div class="row g-2 align-items-center">
+                  <div class="col">
+                    <div class="progress progressStyle">
+                      <div class="progress-bar" role="progressbar" data-width="{{sk.score}}%" style="width: 0%"
+                        aria-valuenow="{{sk.score}}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
-                {% endif %}
+                  <div class="col-auto">
+                    <span class="pLbl">{{sk.score}}%</span>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="col-md-6">
+              {% for sk in col2 %}
+              <div class="progressCol">
+                <span class="progressLbl">{{sk.name}}</span>
+                <div class="row g-2 align-items-center">
+                  <div class="col">
+                    <div class="progress progressStyle">
+                      <div class="progress-bar" role="progressbar" data-width="{{sk.score}}%" style="width: 0%"
+                        aria-valuenow="{{sk.score}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <span class="pLbl">{{sk.score}}%</span>
+                  </div>
+                </div>
+              </div>
               {% endfor %}
             </div>
           </div>
@@ -115,29 +134,31 @@ Start Content
 <section>
   <div class="sectionSpace">
     <div class="container">
-      <div class="portfolioCol">
-        <div class="row pb-3">
+      <div class="workexpCol">
+        <div class="row">
           <div class="col">
-            <h4 class="smText regular">Experiencia de Trabajo</h4>
+            <h4 class="smTitle pb-3 bold">Experiencia de Trabajo</h4>
           </div>
         </div>
         {% for w in work_experience %}
-        <div class="portfolioCard">
+        <div class="workexpCard">
           <div class="row g-4 align-items-center">
-            <div class="col-md-auto">
+            <div class="col-md-auto text-center text-md-start">
               {% if w.logo %}
-              <div class="portfolioImgCol">
+              <div class="workexpImgCol mx-auto mx-md-0">
                 <img src="{{w.logo.url}}" alt="{{w.company}}">
               </div>
               {% endif %}
             </div>
             <div class="col-md">
-              <div class="portfolioContentCol">
-                <h4 class="lgTitle">{{w.position}} <span class="text-muted" style="font-size:1rem;">en {{w.company}}</span></h4>
-                <ul class="portfolioOption">
+              <div class="workexpContentCol">
+                <h4 class="lgTitle">{{w.position}} <span class="text-muted" style="font-size:1rem;">en
+                    {{w.company}}</span></h4>
+                <ul class="workexpOption">
                   <li>
                     <span class="dateLbl">
-                      {{w.start_date|date:"Y"}}{% if w.end_date %} - {{w.end_date|date:"Y"}}{% elif w.is_current %} - Actual{% endif %}
+                      {{w.start_date|date:"Y"}}{% if w.end_date %} - {{w.end_date|date:"Y"}}{% elif w.is_current %} -
+                      Actual{% endif %}
                     </span>
                   </li>
                 </ul>
@@ -159,7 +180,7 @@ Start Content
     <div class="container">
       <div class="row pb-3">
         <div class="col">
-          <h4 class="smText regular">Certificados</h4>
+          <h4 class="smTitle pb-3 bold">Certificados</h4>
         </div>
 
       </div>
@@ -199,7 +220,7 @@ Start Content
       <div class="portfolioCol">
         <div class="row pb-3">
           <div class="col">
-            <h4 class="smText regular">Proyectos</h4>
+            <h4 class="mdTitle pb-3">Proyectos</h4>
           </div>
           <div class="col-auto">
             <a href="{% url 'main:portfolios' %}" class="simpleLink">Ver todo</a>
@@ -209,8 +230,8 @@ Start Content
         {% if p.is_active %}
         <div class="portfolioCard">
           <div class="row g-4 align-items-center">
-            <div class="col-md-auto">
-              <div class="portfolioImgCol">
+            <div class="col-md-auto justify-content-center text-center text-md-start">
+              <div class="portfolioImgCol mx-auto mx-md-0">
                 <a href="{% url 'main:portfolio' slug=p.slug %}"><img src="{{p.image.url}}" alt="..."></a>
               </div>
             </div>
@@ -230,7 +251,7 @@ Start Content
 
       </div>
       <div class="testimonialCol">
-        <h4 class="smText regular d-block">Testimonios</h4>
+        <h4 class="smTitle pb-3 bold">Testimonios</h4>
         <div class="testimonialSlider">
           <div class="swiper testimonialSwiper">
             <div class="swiper-wrapper">
@@ -273,7 +294,7 @@ Start Content
     <div class="container">
       <div class="row pb-3">
         <div class="col">
-          <h4 class="smText regular">Posts recientes</h4>
+          <h4 class="mdTitle pb-3">Posts recientes</h4>
         </div>
         <div class="col-auto">
           <a href="{% url 'main:blogs' %}" class="simpleLink">Ver todo</a>
@@ -297,6 +318,7 @@ Start Content
 
       </div>
     </div>
+  </div>
   </div>
 </section>
 {% endblock %}

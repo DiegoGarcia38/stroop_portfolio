@@ -1,3 +1,5 @@
+from multiprocessing import context
+
 from django.shortcuts import render
 from math import ceil
 from django.contrib import messages
@@ -21,13 +23,18 @@ class IndexView(generic.TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		
+		profile = UserProfile.objects.first()
 		testimonials = Testimonial.objects.filter(is_active=True)
 		certificates = Certificate.objects.filter(is_active=True)
 		blogs = Blog.objects.filter(is_active=True)
 		portfolio = Portfolio.objects.filter(is_active=True)
 		work_experience = WorkExperience.objects.order_by('-start_date')
-		
+		skills = list(profile.skills.filter(is_key_skill=False))
+		col1 = skills[::2]
+		col2 = skills[1::2]
+		context["profile"] = profile
+		context["col1"] = col1
+		context["col2"] = col2
 		context["testimonials"] = testimonials
 		context["work_experience"] = work_experience
 		context["certificates"] = certificates

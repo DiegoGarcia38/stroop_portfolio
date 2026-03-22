@@ -7,6 +7,7 @@ font-family: 'Heebo', sans-serif; */
   --primaryHoverColor: #900AA8;
   --secondaryColor: #EEE;
   --baseColor: #21243D;
+  --navColor: rgba(255, 255, 255, 0.6);
   --baseFont: 'Heebo', sans-serif;
   --titleFont: 'Courier Prime', monospace;
   --regular: 400;
@@ -220,6 +221,10 @@ a, .btn {
 	background-color: #000;
 	border: 1px solid rgba(0,0,0,0.2);
   margin-left: auto;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index : 1000;
 }
 .navToggle:hover {
   cursor: pointer;
@@ -409,6 +414,24 @@ a, .btn {
   border-bottom: 1px solid #E0E0E0;
 }
 
+.workexpOption {
+	padding: 5px 0 16px;
+}
+
+.workexpContentCol > p:last-child {
+  margin-bottom: 0;
+}
+.workexpImgCol img {
+  border-radius: 6px;
+  width: 246px;
+  height: 184px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.workexpCard {
+  padding: 20px 0;
+  border-bottom: 1px solid #E0E0E0;
+}
 
 
 .testimonialCol {
@@ -490,7 +513,7 @@ body.navToggleActive {
 /* portfolio page */
 .col-md-6{
   flex: 0 0 auto;
-  width: 100%
+  width: 50%
 }
 .innerPageBannerCol {
 	padding: 180px 0 15px;
@@ -619,15 +642,20 @@ body.navToggleActive {
   .navCollapseCol {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
+    left: auto;
     bottom: 0;
     width: 230px;
     padding: 20px;
-    background: var(--primaryDarkColor);
+    background: var(--navColor);   
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.05); 
+    backdrop-filter: blur(16px);
     z-index: 99;
     -webkit-transform: translateX(-100%);
+    -webkit-backdrop-filter: blur(12px);
     -ms-transform: translateX(-100%);
-    transform: translateX(-100%);
+    transform: translateX(100%);
     -webkit-transition: all 300ms ease-in-out 0s;
     -o-transition: all 300ms ease-in-out 0s;
     transition: all 300ms ease-in-out 0s;
@@ -654,7 +682,7 @@ body.navToggleActive {
   }
   .navCol a {
   	font-size: 16px;
-    color: var(--bs-white);
+    color: var(--base-color);
   }
 
   .bannerUserImg {
@@ -705,7 +733,7 @@ body.navToggleActive {
   	padding: 100px 0 30px;
   }
   .navCol a:hover, .navCol a.active {
-  	color: var(--bs-white);
+  	color: var(--base-color);
     opacity: 1;
   }
   .navCol a {
