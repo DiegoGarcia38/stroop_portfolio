@@ -1,11 +1,14 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from . models import (
     UserProfile,
     ContactProfile,
     Testimonial,
     Media,
     Portfolio,
+    PortfolioImage,
     Blog,
+    BlogImage,
     Certificate,
     Skill,
     WorkExperience
@@ -28,14 +31,39 @@ class TestimonialAdmin(admin.ModelAdmin):
 class MediaAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
 
+class PortfolioImageInline(admin.TabularInline):
+    model = PortfolioImage
+    extra = 1
+    fields = ('preview', 'image', 'caption', 'order')
+    readonly_fields = ('preview',)
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="height:60px;" />', obj.image.url)
+        return ""
+
+class BlogImageInline(admin.TabularInline):
+    model = BlogImage
+    extra = 1
+    fields = ('preview', 'image', 'caption', 'order')
+    readonly_fields = ('preview',)
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" style="height:60px;" />', obj.image.url)
+        return ""
+
+
 @admin.register(Portfolio)
 class PortfolioAdmin(admin.ModelAdmin):
     list_display = ('id','name','is_active')
+    inlines = [PortfolioImageInline]
     readonly_fields = ('slug',)
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
     list_display = ('id','name','is_active')
+    inlines = [BlogImageInline]
     readonly_fields = ('slug',)
 
 @admin.register(Certificate)

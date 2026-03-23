@@ -49,6 +49,29 @@ Start Content
   <div class="sectionSpaceSm">
     <div class="container">
       {{object.body|safe}}
+      {% if object.images.all %}
+      <div class="row g-4 g-md-3 align-items-center">
+        <div class="col-md-12 order-md-last text-md-start text-center">
+          <div id="portfolioCarousel" class="carousel slide mx-auto mx-md-0" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+              {% for img in object.images.all %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{{ img.image.url }}" class="d-block w-100 rounded">
+              </div>
+              {% endfor %}
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+          </div>
+      </div>
+      {% endif %}
     </div>
   </div>
 </section>

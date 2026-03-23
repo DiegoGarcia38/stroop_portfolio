@@ -111,6 +111,21 @@ class Portfolio(models.Model):
     def get_absolute_url(self):
         return f"/portfolio/{self.slug}"
 
+class PortfolioImage(models.Model):
+    portfolio = models.ForeignKey(
+        Portfolio,
+        on_delete=models.CASCADE,
+        related_name="images"
+    )
+    image = models.ImageField(upload_to="portfolio_gallery")
+    caption = models.CharField(max_length=200, blank=True, null=True)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return f"Imagen para {self.portfolio.name}"
 
 class Blog(models.Model):
 
@@ -139,6 +154,21 @@ class Blog(models.Model):
     def get_absolute_url(self):
         return f"/blog/{self.slug}"
 
+class BlogImage(models.Model):
+    blog = models.ForeignKey(
+        Blog,
+        on_delete=models.CASCADE,
+        related_name="images"
+    )
+    image = models.ImageField(upload_to="blog_gallery")
+    caption = models.CharField(max_length=200, blank=True, null=True)
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return f"Imagen para {self.blog.name}"
 
 class Certificate(models.Model):
 
