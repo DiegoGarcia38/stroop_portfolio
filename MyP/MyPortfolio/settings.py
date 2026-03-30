@@ -162,6 +162,7 @@ AWS_S3_FILE_OVERWRITE = False     # No sobreescribir archivos con mismo nombre
 AWS_S3_ADDRESSING_STYLE = 'path'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_REGION_NAME = 'auto'
+AWS_SESSION_TOKEN = ''
 
 # Usar R2 para archivos subidos (media)
 DEFAULT_FILE_STORAGE = 'MyPortfolio.custom_storage.R2Storage'
