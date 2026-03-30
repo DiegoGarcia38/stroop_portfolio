@@ -52,24 +52,68 @@ Start Content
       {% if object.images.all %}
       <div class="row g-4 g-md-3 align-items-center">
         <div class="col-md-12 order-md-last text-md-start text-center">
-          <div id="portfolioCarousel" class="carousel slide mx-auto mx-md-0" data-bs-ride="carousel">
-
+          <div id="portfolioCarousel" class="carousel slide gallery-carousel" data-bs-ride="false">
+            <!-- Contador -->
+            <div class="gallery-counter">
+              <span id="carouselCurrent">1</span> / {{ object.images.count }}
+            </div>
+            <!-- Indicadores -->
+            <div class="carousel-indicators">
+              {% for img in object.images.all %}
+              <button type="button" data-bs-target="#portfolioCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+                {% if forloop.first %}class="active" aria-current="true"{% endif %}
+                aria-label="Slide {{ forloop.counter }}"></button>
+              {% endfor %}
+            </div>
+            <!-- Slides -->
             <div class="carousel-inner">
               {% for img in object.images.all %}
               <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="{{ img.image.url }}" class="d-block w-100 rounded">
+                <img src="{{ img.image.url }}" alt="{{ img.caption|default:object.name }}"
+                    onclick="openLightbox(this.src)">
               </div>
               {% endfor %}
             </div>
-
+            <!-- Flechas -->
+            {% if object.images.count > 1 %}
             <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
               <span class="carousel-control-prev-icon"></span>
             </button>
-
             <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next">
               <span class="carousel-control-next-icon"></span>
             </button>
+            {% endif %}
           </div>
+
+          <!-- Lightbox -->
+          <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightboxImg" src="" alt="Vista completa">
+          </div>
+
+          <script>
+            // Contador de slide
+            document.getElementById('portfolioCarousel')
+              .addEventListener('slid.bs.carousel', function (e) {
+                document.getElementById('carouselCurrent').textContent = e.to + 1;
+              });
+
+            // Lightbox
+            function openLightbox(src) {
+              document.getElementById('lightboxImg').src = src;
+              document.getElementById('lightbox').classList.add('active');
+              document.body.style.overflow = 'hidden';
+            }
+            function closeLightbox() {
+              document.getElementById('lightbox').classList.remove('active');
+              document.body.style.overflow = '';
+            }
+            document.addEventListener('keydown', function(e) {
+              if (e.key === 'Escape') closeLightbox();
+            });
+          </script>
+
+        </div>
       </div>
       {% endif %}
     </div>
