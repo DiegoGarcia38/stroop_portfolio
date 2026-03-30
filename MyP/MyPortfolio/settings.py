@@ -159,6 +159,9 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_DEFAULT_ACL = None
 AWS_QUERYSTRING_AUTH = False      # URLs públicas sin firma
 AWS_S3_FILE_OVERWRITE = False     # No sobreescribir archivos con mismo nombre
+AWS_S3_ADDRESSING_STYLE = 'path'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = 'auto'
 
 # Usar R2 para archivos subidos (media)
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -172,8 +175,7 @@ STATICFILES_DIRS = [
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles/'
 
-MEDIA_URL = f'https://{config("R2_CUSTOM_DOMAIN")}/media/'
-MEDIA_ROOT = BASE_DIR / 'mediafiles/'
+MEDIA_URL = f'https://{config("R2_CUSTOM_DOMAIN")}/'
 
 
 # Default primary key field type
