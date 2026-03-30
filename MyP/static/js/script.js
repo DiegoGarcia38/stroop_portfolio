@@ -73,3 +73,26 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
+document.getElementById('portfolioCarousel')
+  .addEventListener('slid.bs.carousel', function (e) {
+    document.getElementById('carouselCurrent').textContent = e.to + 1;
+  });
+
+document.getElementById('blogCarousel')
+  .addEventListener('slid.bs.carousel', function (e) {
+    document.getElementById('carouselCurrent').textContent = e.to + 1;
+  });
+// Lightbox
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});

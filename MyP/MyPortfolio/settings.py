@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
+    'storages',
     'ckeditor',
     'ckeditor_uploader',
     'main',
@@ -145,6 +146,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# Storage
+AWS_ACCESS_KEY_ID = config('R2_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('R2_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('R2_BUCKET_NAME')
+AWS_S3_ENDPOINT_URL = config('R2_ENDPOINT_URL')
+AWS_S3_CUSTOM_DOMAIN = config('R2_CUSTOM_DOMAIN')
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False      # URLs públicas sin firma
+AWS_S3_FILE_OVERWRITE = False     # No sobreescribir archivos con mismo nombre
+
+# Usar R2 para archivos subidos (media)
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 STATICFILES_DIRS = [
@@ -154,7 +172,7 @@ STATICFILES_DIRS = [
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles/'
 
-MEDIA_URL = 'media/'
+MEDIA_URL = f'https://{config("R2_CUSTOM_DOMAIN")}/media/'
 MEDIA_ROOT = BASE_DIR / 'mediafiles/'
 
 

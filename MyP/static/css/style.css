@@ -8,6 +8,7 @@ font-family: 'Heebo', sans-serif; */
   --secondaryColor: #EEE;
   --baseColor: #21243D;
   --navColor: rgba(255, 255, 255, 0.6);
+  --bs-teal: #20c997;
   --baseFont: 'Heebo', sans-serif;
   --titleFont: 'Courier Prime', monospace;
   --regular: 400;
@@ -328,7 +329,7 @@ a, .btn {
 	border-radius: 3px;
 }
 .progressStyle .progress-bar {
-	background-color: rgb(212, 169, 75);
+	background-color: var(--bs-teal);
 	border-radius: 3px;
 }
 .progressCol + .progressCol {
