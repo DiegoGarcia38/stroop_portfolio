@@ -1,0 +1,115 @@
+/* Tipografía editorial para contenido de portafolio */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+.editorial-content {
+    max-width: 780px;
+    margin: 0 auto;
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+}
+
+/* Headings */
+.editorial-content h2,
+.editorial-content h3,
+.editorial-content h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    margin: 2.5rem 0 1rem;
+    line-height: 1.2;
+}
+.editorial-content h2 { font-size: 2rem; }
+.editorial-content h3 { font-size: 1.5rem; }
+.editorial-content h4 { font-size: 1.25rem; }
+
+/* Párrafos */
+.editorial-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* Imágenes */
+.editorial-content img {
+    width: 100%;
+    border-radius: 6px;
+    margin: 2rem 0;
+}
+
+/* Blockquotes como pull quotes */
+.editorial-content blockquote {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin: 2.5rem 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    color: #333;
+}
+
+/* Tablas como metadata del proyecto */
+.editorial-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+}
+.editorial-content th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #888;
+    padding: 8px 16px 8px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.editorial-content td {
+    padding: 8px 16px 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* iframes (Sketchfab, Vimeo) */
+.editorial-content iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: none;
+    border-radius: 8px;
+    margin: 2rem 0;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* Listas */
+.editorial-content ul,
+.editorial-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.editorial-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Links */
+.editorial-content a {
+    color: #2563eb;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Separador */
+.editorial-content hr {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin: 3rem auto;
+    max-width: 200px;
+}
+
+/* Código inline */
+.editorial-content code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}

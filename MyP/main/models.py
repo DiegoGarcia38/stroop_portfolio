@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
-from ckeditor_uploader.fields import RichTextUploadingField
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Skill(models.Model):
@@ -95,7 +95,7 @@ class Portfolio(models.Model):
     date = models.DateTimeField(blank=True, null=True)
     name = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
-    body = RichTextUploadingField(blank=True, null=True, config_name='portal_config')
+    body = CKEditor5Field('Contenido',blank=True, null=True, config_name='portal_config')
     image = models.ImageField(blank=True, null=True, upload_to="portfolio")
     slug = models.SlugField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
@@ -138,7 +138,7 @@ class Blog(models.Model):
     author = models.CharField(max_length=200, blank=True, null=True)
     name = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
-    body = RichTextUploadingField(blank=True, null=True, config_name='portal_config')
+    body = CKEditor5Field('Contenido', blank=True, null=True, config_name='portal_config')
     slug = models.SlugField(null=True, blank=True)
     image = models.ImageField(blank=True, null=True, upload_to="blog")
     is_active = models.BooleanField(default=True)

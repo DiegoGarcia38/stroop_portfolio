@@ -34,8 +34,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'storages',
-    'ckeditor',
-    'ckeditor_uploader',
+    'django_ckeditor_5',
     'main',
     'gunicorn',
     'django.contrib.admin',
@@ -83,24 +82,24 @@ WSGI_APPLICATION = 'MyPortfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'HOST': config('DB_HOST'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'PORT': config('DB_PORT')
-    }
-}
+# DATABASES = {
+#     'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'HOST': config('DB_HOST'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'PORT': config('DB_PORT')
+#     }
+# }
 
 # Para desarrollo local
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db3.sqlite3',
-#    }
-# }
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db3.sqlite3',
+   }
+}
 
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_HOST = 'smtp-mail.outlook.com'
@@ -167,7 +166,7 @@ AWS_SESSION_TOKEN = ''
 # Usar R2 para archivos subidos (media)
 DEFAULT_FILE_STORAGE = 'MyPortfolio.custom_storage.R2Storage'
 
-CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_5_UPLOAD_PATH = 'uploads/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static/',
@@ -186,24 +185,40 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-CKEDITOR_CUSTOM_CSS = 'staticfiles/ckeditor/ckeditor.css'
-CKEDITOR_FILE_STORAGE = 'MyPortfolio.custom_storage.CustomStorage'
-CKEDITOR_CONFIGS = {
+CKEDITOR_5_CUSTOM_CSS = 'staticfiles/ckeditor5/ckeditor_5.css'
+CKEDITOR_5_FILE_STORAGE = 'MyPortfolio.custom_storage.CustomStorage'
+CKEDITOR_5_CONFIGS = {
     'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': '100%',
-        'extraAllowedContent': 'div[*];',
-        'allowedContent': True,
+        'toolbar': [
+            'heading', '|',
+            'bold', 'italic', 'link',
+            'bulletedList', 'numberedList',
+            'blockQuote', 'imageUpload',
+            'undo', 'redo'
+        ],
     },
     'portal_config': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': '100%',
-        'extraAllowedContent': 'div[*];',
-        'allowedContent': True,
-    },
+        'toolbar': [
+            'heading', '|',
+            'bold', 'italic', 'underline', '|',
+            'link', 'imageUpload', 'mediaEmbed', '|',
+            'bulletedList', 'numberedList', 'blockQuote', '|',
+            'insertTable', 'htmlEmbed', '|',
+            'undo', 'redo', '|',
+            'sourceEditing',
+        ],
+        'htmlSupport': {
+            'allow': [
+                {
+                    'name': 'iframe',
+                    'attributes': True,
+                    'classes': True,
+                    'styles': True
+                }
+            ]
+        }
+    }
 }
-CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_5_IMAGE_BACKEND = 'pillow'
 
 
