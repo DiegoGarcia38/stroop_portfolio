@@ -57,7 +57,6 @@ class ContactView(generic.FormView):
 class PortfolioView(generic.ListView):
 	model = Portfolio
 	template_name = "main/portfolio.html"
-	paginate_by = 10
 
 	def get_queryset(self):
 		return super().get_queryset().filter(is_active=True)

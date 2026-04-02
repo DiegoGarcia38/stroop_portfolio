@@ -526,13 +526,14 @@ body.navToggleActive {
 }
 .pCol {
   height: 100%;
+
 }
 .pImg {
   border-radius: 6px;
-  width: 421px;
-  height: 200px;
   -o-object-fit: cover;
   object-fit: cover;
+  height: 300px;
+  width: 421px;
 }
 .portfolio-body img {
   max-width: 100%;
