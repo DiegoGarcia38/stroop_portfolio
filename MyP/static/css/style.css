@@ -577,8 +577,8 @@ body.navToggleActive {
 .gallery-carousel .carousel-inner {
   border-radius: 8px;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
-  background: #000;
+  aspect-ratio: 1 / 1;
+  background: #fefefe;
 }
 .gallery-carousel .carousel-item {
   height: 100%;

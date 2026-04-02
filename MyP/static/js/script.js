@@ -83,6 +83,7 @@ document.getElementById('blogCarousel')
   .addEventListener('slid.bs.carousel', function (e) {
     document.getElementById('carouselCurrent').textContent = e.to + 1;
   });
+  
 // Lightbox
 function openLightbox(src) {
   document.getElementById('lightboxImg').src = src;
