@@ -2,13 +2,13 @@
 /* font-family: 'Courier Prime', monospace;
 font-family: 'Heebo', sans-serif; */
 :root {
-  --primaryColor: #9C07B6;
-  --primaryDarkColor: #3D0048;
-  --primaryHoverColor: #900AA8;
+  --primaryColor: #142850;
+  --primaryDarkColor: #06132e;
+  --primaryHoverColor: #0d1e41;
   --secondaryColor: #EEE;
+  --highlight: #a12e24;
   --baseColor: #21243D;
   --navColor: rgba(255, 255, 255, 0.6);
-  --bs-teal: #20c997;
   --baseFont: 'Heebo', sans-serif;
   --titleFont: 'Courier Prime', monospace;
   --regular: 400;
@@ -37,13 +37,17 @@ a {
   color: inherit;
 }
 a:hover {
-  color: var(--primaryDarkColor);
+  color: var(--primaryHoverColor);
 }
 a, .btn {
   -webkit-transition: all 300ms ease-in-out 0s;
   -o-transition: all 300ms ease-in-out 0s;
   transition: all 300ms ease-in-out 0s;
   text-decoration: none;
+}
+
+.contact-link {
+  color: var(--highlight);
 }
 .btn:focus {
   -webkit-box-shadow: none;
@@ -71,7 +75,7 @@ a, .btn {
   color: var(--bs-white);
 }
 .btnPrimary:hover {
-  background-color: var(--primaryDarkColor);
+  background-color: var(--primaryHoverColor);
   color: var(--bs-white);
 }
 .btnOutline {
@@ -329,7 +333,7 @@ a, .btn {
 	border-radius: 3px;
 }
 .progressStyle .progress-bar {
-	background-color: var(--bs-teal);
+	background-color: var(--highlight);
 	border-radius: 3px;
 }
 .progressCol + .progressCol {
@@ -368,9 +372,9 @@ a, .btn {
 .dateLbl {
 	display: inline-block;
 	padding: 4px 12px;
-	background-color: #142850;
+	background-color: var(--primaryColor);
 	border-radius: 20px;
-	color: #fff;
+	color: var(--lightBg);
 	font-size: 18px;
 	line-height: 1;
 	font-weight: var(--bold);
